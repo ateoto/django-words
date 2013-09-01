@@ -47,7 +47,7 @@ setup(
     platforms=['OS Independent'],
     keywords='django, blog, app',
     author='Matthew McCants	',
-    author_email='mattmccants.com',
+    author_email='mattmccants@gmail.com',
     url="https://github.com/Ateoto/django-words",
     packages=find_packages(),
     include_package_data=True,
