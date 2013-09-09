@@ -7,10 +7,10 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class Entry(models.Model):
 	title = models.CharField(max_length=200)
-	author = models.ForeignKey(User)
+	author = models.ForeignKey(User, editable=False)
 	published_on = models.DateTimeField(auto_now_add=True)
 	text = models.TextField()
-	slug = models.SlugField()
+	slug = models.SlugField(editable=False)
 
 	def __str__(self):
 		return self.title

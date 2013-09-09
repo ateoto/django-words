@@ -43,6 +43,8 @@ COVERAGE_MODULE_EXCLUDES = [
     'migrations', 'fixtures', 'admin$', 'django_extensions',
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 EXTERNAL_APPS = [
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -55,6 +57,7 @@ EXTERNAL_APPS = [
     'django.contrib.sites',
     'django_jasmine',
     'django_nose',
+    'crispy_forms',
 ]
 
 INTERNAL_APPS = [

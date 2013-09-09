@@ -9,3 +9,4 @@ factory_boy
 mock
 selenium
 coveralls
+django-crispy-forms
