@@ -1,8 +1,5 @@
-"""Views for the words app."""
-# from django.views.generic import TemplateView
+from django.views.generic import ListView
+from .models import Entry
 
-# from . import models
-
-
-# class YourView(TemplateView):
-#    template_name = 'words/default.html'
+class LatestEntryList(ListView):
+    model = Entry
