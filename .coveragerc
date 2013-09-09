@@ -1,0 +1,7 @@
+[run]
+source = words
+omit = 
+  */tests*
+  */migrations*
+  */admin*
+  
