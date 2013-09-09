@@ -1,6 +1,11 @@
 words
 ============
 
+.. image:: https://travis-ci.org/Ateoto/django-words.png?branch=master   
+    :target: https://travis-ci.org/Ateoto/django-words
+
+.. image:: words/tests/coverage/coverage_status.png
+
 A blog app as used by ateoto.com.
 
 Installation
