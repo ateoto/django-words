@@ -61,8 +61,15 @@ class NewVisitorTest(LiveServerTestCase):
 		self.assertEqual(response.status_code, 302)
 
 	def test_can_see_entry_add(self):
-		self.client.login(username='fakey',password='notreal')
+		self.client.login(username='fakey', password='notreal')
 
 		with self.assertTemplateUsed('words/entry_form.html'):
 			response = self.client.get('/blog/add/')
+			self.assertEqual(response.status_code, 200)
+
+	def test_can_add_entry(self):
+		self.client.login(username='fakey', password='notreal')
+		
+		with self.assertTemplateUsed('words/entry_detail.html'):
+			response = self.client.post('/blog/add/', {'title': 'Test Title', 'text': 'The test text.'}, follow=True)
 			self.assertEqual(response.status_code, 200)

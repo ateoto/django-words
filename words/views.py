@@ -1,5 +1,6 @@
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
 
 from .models import Entry
 from .forms import EntryForm
@@ -7,6 +8,10 @@ from .forms import EntryForm
 
 class LatestEntryList(ListView):
     model = Entry
+
+
+class EntryDetail(DetailView):
+	model = Entry
 
 
 class EntryCreate(CreateView):
