@@ -4,9 +4,6 @@ words
 .. image:: https://travis-ci.org/Ateoto/django-words.png?branch=master   
     :target: https://travis-ci.org/Ateoto/django-words
 
-.. image:: https://coveralls.io/repos/Ateoto/django-words/badge.png?branch=master
-   :target: https://coveralls.io/r/Ateoto/django-words
-
 A blog app as used by ateoto.com.
 
 Installation
