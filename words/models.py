@@ -7,11 +7,15 @@ from django.core.urlresolvers import reverse
 
 @python_2_unicode_compatible
 class Entry(models.Model):
-	title = models.CharField(max_length=200)
+	title = models.CharField(max_length=200,unique_for_date='published_on')
 	author = models.ForeignKey(User, editable=False)
 	published_on = models.DateTimeField(auto_now_add=True)
+	edited_on = models.DateTimeField(auto_now=True)
 	text = models.TextField()
 	slug = models.SlugField(editable=False)
+
+	class Meta:
+		verbose_name_plural = 'Entries'
 
 	def __str__(self):
 		return self.title
@@ -23,4 +27,9 @@ class Entry(models.Model):
 		super(Entry, self).save(*args, **kwargs)
 
 	def get_absolute_url(self):
-		return reverse('entry-detail', kwargs={'pk': str(self.id)})
+		return reverse('entry-detail', kwargs={
+			'year': self.published_on.year,
+			'month': self.published_on.month,
+			'day': self.published_on.day, 
+			'slug': str(self.slug)
+		})

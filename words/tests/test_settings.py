@@ -58,6 +58,8 @@ EXTERNAL_APPS = [
     'django_jasmine',
     'django_nose',
     'crispy_forms',
+    'ateoto_base',
+    'django_summernote',
 ]
 
 INTERNAL_APPS = [

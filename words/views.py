@@ -7,8 +7,8 @@ from .forms import EntryForm
 
 
 class LatestEntryList(ListView):
-    model = Entry
-
+    context_object_name = "entry_list"
+    queryset = Entry.objects.order_by("-published_on")
 
 class EntryDetail(DetailView):
 	model = Entry

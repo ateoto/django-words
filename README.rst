@@ -1,5 +1,5 @@
 words
-============
+=====
 
 .. image:: https://travis-ci.org/Ateoto/django-words.png?branch=master   
     :target: https://travis-ci.org/Ateoto/django-words
