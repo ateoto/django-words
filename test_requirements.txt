@@ -10,3 +10,4 @@ mock
 selenium
 coveralls
 django-crispy-forms
+django-summernote
