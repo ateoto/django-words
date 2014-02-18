@@ -75,6 +75,6 @@ class NewVisitorTest(LiveServerTestCase):
 			self.assertEqual(response.status_code, 200)
 
 	def test_entry_view(self):
-		response = self.client.get(self.test_entry.get_absolute_url())
 		with self.assertTemplateUsed('words/entry_detail.html'):
+			response = self.client.get(self.test_entry.get_absolute_url())
 			self.assertEqual(response.status_code, 200)
