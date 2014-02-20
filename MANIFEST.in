@@ -1,9 +1,0 @@
-include AUTHORS
-include LICENSE
-include DESCRIPTION
-include CHANGELOG.txt
-include README.md
-graft words
-global-exclude *.orig *.pyc *.log *.swp
-prune words/tests/coverage
-prune words/.ropeproject

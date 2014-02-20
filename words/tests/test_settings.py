@@ -36,16 +36,6 @@ INTERNAL_APPS = [
 
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 
-
-COVERAGE_MODULE_EXCLUDES = [
-    'tests$', 'settings$', 'urls$', 'locale$',
-    'migrations', 'fixtures', 'admin$', 'django_extensions',
-]
-
-COVERAGE_MODULE_EXCLUDES += EXTERNAL_APPS
-
-TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
