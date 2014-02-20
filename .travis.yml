@@ -3,9 +3,8 @@ python:
   - "2.7"
 env:
   - DJANGO=https://github.com/django/django/archive/master.tar.gz
-  - DJANGO=django==1.6
-  - DJANGO=django==1.5
-before_install:
+  - DJANGO=django==1.6.2
+  before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 install:
