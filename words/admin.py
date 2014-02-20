@@ -1,3 +1,4 @@
+"""
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 
@@ -13,3 +14,4 @@ class EntryAdmin(SummernoteModelAdmin):
 
 
 admin.site.register(models.Entry, EntryAdmin)
+"""

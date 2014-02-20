@@ -1,14 +1,8 @@
-"""URLs to run the tests."""
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-
-
-admin.autodiscover()
-
-urlpatterns = patterns(
-    '',
+urlpatterns = patterns('',
 	url(r'^blog/', include('words.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^summernote/', include('django_summernote.urls')),
+    url(r'^ckeditor/', include('ckeditor.urls')),
 )

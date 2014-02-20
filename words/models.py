@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.urlresolvers import reverse
@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 @python_2_unicode_compatible
 class Entry(models.Model):
 	title = models.CharField(max_length=200,unique_for_date='published_on')
-	author = models.ForeignKey(User, editable=False)
+	author = models.ForeignKey(settings.AUTH_USER_MODEL, editable=False)
 	published_on = models.DateTimeField(auto_now_add=True)
 	edited_on = models.DateTimeField(auto_now=True)
 	text = models.TextField()
