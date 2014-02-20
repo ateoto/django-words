@@ -4,3 +4,4 @@ selenium
 coveralls
 django-crispy-forms
 django-ckeditor-updated
+django-taggit
