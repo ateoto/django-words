@@ -4,6 +4,8 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.urlresolvers import reverse
 
+from ckeditor.fields import RichTextField
+
 
 @python_2_unicode_compatible
 class Entry(models.Model):
@@ -11,7 +13,7 @@ class Entry(models.Model):
 	author = models.ForeignKey(settings.AUTH_USER_MODEL, editable=False)
 	published_on = models.DateTimeField(auto_now_add=True)
 	edited_on = models.DateTimeField(auto_now=True)
-	text = models.TextField()
+	text = RichTextField()
 	slug = models.SlugField(editable=False)
 
 	class Meta:
