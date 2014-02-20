@@ -14,3 +14,4 @@ class EntryForm(forms.ModelForm):
 
     class Meta:
         model = Entry
+        fields = '__all__'
