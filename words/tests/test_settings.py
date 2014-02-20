@@ -44,6 +44,8 @@ COVERAGE_MODULE_EXCLUDES = [
 
 COVERAGE_MODULE_EXCLUDES += EXTERNAL_APPS
 
+TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
