@@ -71,7 +71,7 @@ class NewVisitorTest(LiveServerTestCase):
 		self.client.login(username='fakey', password='notreal')
 		
 		with self.assertTemplateUsed('words/entry_detail.html'):
-			response = self.client.post('/blog/add/', {'title': 'Test Title', 'text': 'The test text.'}, follow=True)
+			response = self.client.post('/blog/add/', {'title': 'Test Title', 'text': 'The test text.', 'tags': 'TestTag'}, follow=True)
 			self.assertEqual(response.status_code, 200)
 
 	def test_entry_view(self):
