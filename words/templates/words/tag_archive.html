@@ -1,0 +1,11 @@
+{% block blog_entries %}
+    <h2>Entries tagged with {{ tag }}</h2>
+	{% for entry in object_list %}
+    <article>
+        <header>
+        	<h4>{{ entry.title }}</h4>
+        </header>
+        <p>{{ entry.text|safe }}</p>
+    </article>
+    {% endfor %}
+{% endblock blog_entries %}

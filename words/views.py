@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
+from django.shortcuts import get_object_or_404
 
 from .models import Entry
 from .forms import EntryForm
@@ -21,3 +22,14 @@ class EntryCreate(CreateView):
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super(EntryCreate, self).form_valid(form)
+
+class TagArchive(ListView):
+	template_name = "words/tag_archive.html"
+
+	def get_queryset(self):
+		return Entry.objects.filter(tags__slug__in=[self.kwargs['tag_slug']])
+
+	def get_context_data(self, **kwargs):
+		context = super(TagArchive, self).get_context_data(**kwargs)
+		context['tag'] = get_object_or_404(Entry.tags, slug=self.kwargs['tag_slug'])
+		return context
