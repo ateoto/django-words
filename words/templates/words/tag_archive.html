@@ -1,11 +1,23 @@
-{% block blog_entries %}
-    <h2>Entries tagged with {{ tag }}</h2>
-	{% for entry in object_list %}
-    <article>
-        <header>
-        	<h4>{{ entry.title }}</h4>
-        </header>
-        <p>{{ entry.text|safe }}</p>
-    </article>
-    {% endfor %}
-{% endblock blog_entries %}
+{% extends "words/base.html" %}
+{% load static from staticfiles %}
+{% block css %}
+    {{ block.super }}
+    <link href="{% static "words/css/main.css" %}" rel="stylesheet">
+{% endblock css %}
+{% block title %}{{ block.super }} | Blog {% endblock title %} 
+{% block content %}
+<div class="container primary-content">
+    <div class="col-md-12">
+        {% for entry in object_list %}
+        <article class="listed-article">
+            <header class="listed-article">
+                <a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a><br>
+                <small class="publine">Posted on {{ entry.published_on|date:"l, F dS Y @ G:i" }}</small>
+            </header>
+            {{ entry.text|safe }}
+            <footer></footer>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

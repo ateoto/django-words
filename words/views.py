@@ -27,7 +27,9 @@ class TagArchive(ListView):
 	template_name = "words/tag_archive.html"
 
 	def get_queryset(self):
-		return Entry.objects.filter(tags__slug__in=[self.kwargs['tag_slug']])
+		return Entry.objects.filter(
+			tags__slug__in=[self.kwargs['tag_slug']]
+		).order_by('-published_on')
 
 	def get_context_data(self, **kwargs):
 		context = super(TagArchive, self).get_context_data(**kwargs)
