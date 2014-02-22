@@ -10,7 +10,7 @@ from taggit.managers import TaggableManager
 
 @python_2_unicode_compatible
 class Entry(models.Model):
-    title = models.CharField(max_length=200,unique_for_date='published_on')
+    title = models.CharField(max_length=200, unique_for_date='published_on')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, editable=False)
     published_on = models.DateTimeField(auto_now_add=True)
     edited_on = models.DateTimeField(auto_now=True)
