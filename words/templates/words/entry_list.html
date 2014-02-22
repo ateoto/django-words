@@ -1,11 +1,30 @@
-{% block blog_entries %}
-    <h2>Latest Entries</h2>
-	{% for entry in object_list %}
-    <article>
-        <header>
-        	<h4>{{ entry.title }}</h4>
-        </header>
-        <p>{{ entry.text|safe }}</p>
-    </article>
-    {% endfor %}
-{% endblock blog_entries %}
+{% extends "words/base.html" %}
+{% load static from staticfiles %}
+{% block css %}
+	{{ block.super }}
+	<link href="{% static "words/css/main.css" %}" rel="stylesheet">
+{% endblock css %}
+{% block title %}{{ block.super }} | Blog {% endblock title %} 
+{% block content %}
+<div class="container primary-content">
+    <div class="col-md-12">
+        {% for entry in object_list %}
+        <article class="listed-article">
+            <header class="listed-article">
+                <a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
+            	<span class="small publine">Posted on {{ entry.published_on|date:"l, F dS Y @ G:i" }}</span>
+            	{% if entry.tags.slugs %}
+            	<span class="small article-tags"><i class="fa fa-tags"></i>
+            		{% for tag in entry.tags.slugs %}
+            			<a href="{% url 'tag-archive' tag_slug=tag %}">{{ tag }}</a>{% if forloop.last %}{% else %}, {% endif %}
+            		{% endfor %}
+            	</span>
+            	{% endif %}
+            </header>
+            {{ entry.text|safe }}
+            <footer></footer>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

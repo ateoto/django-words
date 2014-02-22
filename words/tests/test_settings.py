@@ -27,6 +27,7 @@ EXTERNAL_APPS = [
     'django.contrib.sites',
     'crispy_forms',
     'ckeditor',
+    'taggit',
 ]
 
 INTERNAL_APPS = [

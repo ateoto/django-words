@@ -5,5 +5,6 @@ dist/
 docs/_build/
 app_media/
 app_static/
+words/static/
 *coverage/
 .coverage
