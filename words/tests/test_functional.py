@@ -51,7 +51,7 @@ class NewVisitorTest(LiveServerTestCase):
     def test_index_live(self):
         self.browser.get('%s%s' % (self.live_server_url, '/blog/'))
 
-        entries_html = self.browser.find_elements_by_tag_name('h4')
+        entries_html = self.browser.find_elements_by_css_selector('.article-title')
 
         for entry in Entry.objects.all():
             self.assertTrue(
