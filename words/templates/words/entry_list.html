@@ -4,7 +4,7 @@
 	{{ block.super }}
 	<link href="{% static "words/css/main.css" %}" rel="stylesheet">
 {% endblock css %}
-{% block title %}{{ block.super }} | Blog {% endblock title %} 
+{% block title %}Blog {% endblock title %} 
 {% block content %}
 <div class="container primary-content">
     <div class="col-md-12">
@@ -16,7 +16,7 @@
             	{% if entry.tags.slugs %}
             	<span class="small article-tags"><i class="fa fa-tags"></i>
             		{% for tag in entry.tags.slugs %}
-            			<a href="{% url 'tag-archive' tag_slug=tag %}">{{ tag }}</a>{% if forloop.last %}{% else %}, {% endif %}
+            			<a href="{% url 'tag-archive' tag_slug=tag %}" class="tag-archive">{{ tag }}</a>{% if forloop.last %}{% else %}, {% endif %}
             		{% endfor %}
             	</span>
             	{% endif %}

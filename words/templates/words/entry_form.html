@@ -1,3 +1,18 @@
+{% extends "words/base.html" %}
+{% load static from staticfiles %}
 {% load crispy_forms_tags %}
-
+{% block css %}
+    {{ block.super }}
+    <link href="{% static "words/css/main.css" %}" rel="stylesheet">
+{% endblock css %}
+{% block title %}Add Entry{% endblock title %} 
+{% block content %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<div class="container primary-content">
+    <div class="col-md-12">
+		{% crispy form %}
+    </div>
+</div>
+{% endblock content %}
 {% crispy form %}
+

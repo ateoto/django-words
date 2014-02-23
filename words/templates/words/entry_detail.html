@@ -1,2 +1,29 @@
-{{ entry.title }}
-{{ entry.text|safe }}
+{% extends "words/base.html" %}
+{% load static from staticfiles %}
+{% block css %}
+	{{ block.super }}
+	<link href="{% static "words/css/main.css" %}" rel="stylesheet">
+{% endblock css %}
+{% block title %}{{ entry.title }}{% endblock title %} 
+{% block content %}
+<div class="container primary-content">
+    <div class="col-md-12">
+        <article class="listed-article">
+            <header class="listed-article">
+                <a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
+            	<span class="small publine">Posted {{ entry.published_on|date:"l, F dS Y @ G:i" }}</span>
+            	{% if entry.tags.slugs %}
+        		<span class="small article-tags">
+        			<i class="fa fa-tags"></i>
+        			{% for tag in entry.tags.slugs %}
+    				<a href="{% url 'tag-archive' tag_slug=tag %}" class="tag-archive">{{ tag }}</a>{% if forloop.last %}{% else %}, {% endif %}
+            		{% endfor %}
+            	</span>
+            	{% endif %}
+            </header>
+            {{ entry.text|safe }}
+            <footer></footer>
+        </article>
+    </div>
+</div>
+{% endblock content %}
