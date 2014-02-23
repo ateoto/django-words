@@ -1,0 +1,29 @@
+.primary-content {
+	padding-top: 100px;
+}
+.article-title {
+	display: block;
+}
+.article-title:hover {
+	text-decoration: none;
+}
+article.listed-article {
+	padding-bottom: 40px;
+}
+header.listed-article {
+	padding-bottom: 15px;
+}
+.publine {
+	color: #6a6a6a;
+	display: block;
+}
+.article-tags {
+	display: block;
+}
+
+.article-tags > i {
+	padding-right: 3px;
+}
+.tag-archive {
+	color: #000;
+}
