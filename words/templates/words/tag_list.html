@@ -1,0 +1,17 @@
+{% extends "words/base.html" %}
+{% load static from staticfiles %}
+{% block css %}
+	{{ block.super }}
+	<link href="{% static "words/css/main.css" %}" rel="stylesheet">
+{% endblock css %}
+{% block title %}{{ block.super }} | Blog {% endblock title %} 
+{% block content %}
+<div class="container primary-content">
+    <div class="col-md-12">
+        {% for tag in object_list %}
+            {{ tag }}<br>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

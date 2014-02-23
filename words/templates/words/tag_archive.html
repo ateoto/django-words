@@ -11,8 +11,15 @@
         {% for entry in object_list %}
         <article class="listed-article">
             <header class="listed-article">
-                <a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a><br>
-                <small class="publine">Posted on {{ entry.published_on|date:"l, F dS Y @ G:i" }}</small>
+                <a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
+                <span class="small publine">Posted {{ entry.published_on|date:"l, F dS Y @ G:i" }}</span>
+                {% if entry.tags.slugs %}
+                <span class="small article-tags"><i class="fa fa-tags"></i>
+                    {% for tag in entry.tags.slugs %}
+                        <a href="{% url 'tag-archive' tag_slug=tag %}">{{ tag }}</a>{% if forloop.last %}{% else %}, {% endif %}
+                    {% endfor %}
+                </span>
+                {% endif %}
             </header>
             {{ entry.text|safe }}
             <footer></footer>

@@ -7,13 +7,13 @@ from .models import Entry
 from .forms import EntryForm
 
 
-class LatestEntryList(ListView):
-    context_object_name = "entry_list"
-    queryset = Entry.objects.order_by("-published_on")
+class EntryList(ListView):
+	context_object_name = "entry_list"
+	queryset = Entry.objects.order_by("-published_on")
+	paginate_by = 5
 
 class EntryDetail(DetailView):
 	model = Entry
-
 
 class EntryCreate(CreateView):
 	form_class = EntryForm
@@ -22,6 +22,10 @@ class EntryCreate(CreateView):
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super(EntryCreate, self).form_valid(form)
+
+class TagList(ListView):
+	queryset = Entry.tags.all()
+	template_name = "words/tag_list.html"
 
 class TagArchive(ListView):
 	template_name = "words/tag_archive.html"

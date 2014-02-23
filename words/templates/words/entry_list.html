@@ -25,6 +25,20 @@
             <footer></footer>
         </article>
         {% endfor %}
+        {% if is_paginated %}
+		<ul class="pager">
+		  {% if page_obj.has_next %}
+		  <li class="previous">
+		  	<a href="{% url 'paginated-entry-list' page=page_obj.next_page_number %}"><i class="fa fa-arrow-left"></i>&nbsp; Older</a>
+		  </li>
+		  {% endif %}
+		  {% if page_obj.has_previous %}
+		  <li class="next">
+		  	<a href="{% url 'paginated-entry-list' page=page_obj.previous_page_number %}">Newer &nbsp;<i class="fa fa-arrow-right"></i></a>
+		  </li>
+		  {% endif %}
+		</ul>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
