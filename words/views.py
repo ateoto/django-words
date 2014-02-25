@@ -1,6 +1,8 @@
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
+from django.views.generic.dates import YearArchiveView, MonthArchiveView, DayArchiveView
+
 from django.shortcuts import get_object_or_404
 
 from .models import Entry
@@ -11,6 +13,30 @@ class EntryList(ListView):
 	context_object_name = "entry_list"
 	queryset = Entry.objects.order_by("-published_on")
 	paginate_by = 5
+
+class EntryYearArchive(YearArchiveView):
+	context_object_name = "entry_list"
+	queryset = Entry.objects.order_by("-published_on")
+	date_field = "published_on"
+	make_object_list = True
+	paginate_by = 5
+	template_name = "words/entry_list.html"
+
+class EntryMonthArchive(MonthArchiveView):
+	context_object_name = "entry_list"
+	queryset = Entry.objects.order_by("-published_on")
+	date_field = "published_on"
+	make_object_list = True
+	paginate_by = 5
+	template_name = "words/entry_list.html"
+
+class EntryDayArchive(DayArchiveView):
+	context_object_name = "entry_list"
+	queryset = Entry.objects.order_by("-published_on")
+	date_field = "published_on"
+	make_object_list = True
+	paginate_by = 5
+	template_name = "words/entry_list.html"
 
 class EntryDetail(DetailView):
 	model = Entry
