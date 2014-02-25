@@ -19,7 +19,6 @@ class EntryYearArchive(YearArchiveView):
 	queryset = Entry.objects.order_by("-published_on")
 	date_field = "published_on"
 	make_object_list = True
-	paginate_by = 5
 	template_name = "words/entry_list.html"
 
 class EntryMonthArchive(MonthArchiveView):
@@ -27,7 +26,6 @@ class EntryMonthArchive(MonthArchiveView):
 	queryset = Entry.objects.order_by("-published_on")
 	date_field = "published_on"
 	make_object_list = True
-	paginate_by = 5
 	template_name = "words/entry_list.html"
 
 class EntryDayArchive(DayArchiveView):
@@ -35,7 +33,6 @@ class EntryDayArchive(DayArchiveView):
 	queryset = Entry.objects.order_by("-published_on")
 	date_field = "published_on"
 	make_object_list = True
-	paginate_by = 5
 	template_name = "words/entry_list.html"
 
 class EntryDetail(DetailView):
