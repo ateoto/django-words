@@ -1,4 +1,6 @@
 import unittest
+from datetime import timedelta, datetime
+import calendar
 
 from django.test import LiveServerTestCase
 from django.test.client import Client
@@ -22,17 +24,17 @@ class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.client = Client()
-        test_user = User.objects.create_superuser('fakey', 'fake@test.com', 'notreal')
+        self.test_user = User.objects.create_superuser('fakey', 'fake@test.com', 'notreal')
         self.test_entry = Entry.objects.create(
             title='This is a test entry.',
-            author=test_user,
+            author=self.test_user,
             text='This is the body of the test entry. Not a whole lot here.'
         )
         self.test_entry.tags.add('testing','space testing')
 
         self.test_entry_two = Entry.objects.create(
             title='Another test.',
-            author=test_user,
+            author=self.test_user,
             text='How does TWO sound?'
         )
         self.test_entry_two.tags.add('testing')
@@ -98,3 +100,94 @@ class NewVisitorTest(LiveServerTestCase):
             response = self.client.get('/blog/tags/')
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(response.context['object_list']), 2)
+
+    def test_year_archive(self):
+        a_year = timedelta(days=365)
+        today = datetime.now()
+        next_year = today + a_year
+        last_year = today - a_year
+
+        date_test_entry = Entry.objects.create(
+            title='This is a test entry for dates by year',
+            author=self.test_user,
+            text='I am creating an entry so that I can modify the date for testing.'
+        )
+        date_test_entry.tags.add('testing','dates')
+        date_test_entry.published_on = last_year
+        date_test_entry.save()
+
+        with self.assertTemplateUsed('words/entry_list.html'):
+            response = self.client.get('/blog/%d/' % today.year)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(response.context['entry_list']), 2)
+
+        with self.assertTemplateUsed('words/entry_list.html'):
+            response = self.client.get('/blog/%d/' % last_year.year)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(response.context['entry_list']), 1)
+
+        response = self.client.get('/blog/%d/' % next_year.year)
+        self.assertEqual(response.status_code, 404)
+
+    def test_month_archive(self):
+        today = datetime.now()
+        days_in_current_month = calendar.monthrange(today.year, today.month)[1]
+        a_month = timedelta(days=days_in_current_month)
+        next_month = today + a_month
+        last_month = today - a_month
+
+        date_test_entry = Entry.objects.create(
+            title='This is a test entry for dates by month',
+            author=self.test_user,
+            text='I am creating an entry so that I can modify the date for testing.'
+        )
+        date_test_entry.tags.add('testing','dates')
+        date_test_entry.published_on = last_month
+        date_test_entry.save()
+
+        with self.assertTemplateUsed('words/entry_list.html'):
+            response = self.client.get('/blog/%d/%d/' % (today.year, today.month))
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(response.context['entry_list']), 2)
+
+        with self.assertTemplateUsed('words/entry_list.html'):
+            response = self.client.get('/blog/%d/%d/' % (last_month.year, last_month.month))
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(response.context['entry_list']), 1)
+
+        response = self.client.get('/blog/%d/%d/' % (next_month.year, next_month.month))
+        self.assertEqual(response.status_code, 404)
+
+    def test_day_archive(self):
+        today = datetime.now()
+        a_day = timedelta(days=1)
+        tommorow = today + a_day
+        yesterday = today - a_day
+
+        date_test_entry = Entry.objects.create(
+            title='This is a test entry for dates by month',
+            author=self.test_user,
+            text='I am creating an entry so that I can modify the date for testing.'
+        )
+        date_test_entry.tags.add('testing','dates')
+        date_test_entry.published_on = yesterday
+        date_test_entry.save()
+
+        with self.assertTemplateUsed('words/entry_list.html'):
+            response = self.client.get('/blog/%d/%d/%d/' % (today.year, 
+                                                            today.month, 
+                                                            today.day))
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(response.context['entry_list']), 2)
+
+        with self.assertTemplateUsed('words/entry_list.html'):
+            response = self.client.get('/blog/%d/%d/%d/' % (yesterday.year,
+                                                            yesterday.month,
+                                                            yesterday.day))
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(response.context['entry_list']), 1)
+
+        response = self.client.get('/blog/%d/%d/%d/' % (tommorow.year,
+                                                        tommorow.month,
+                                                        tommorow.day))
+        self.assertEqual(response.status_code, 404)
