@@ -2,7 +2,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic.dates import YearArchiveView, MonthArchiveView, DayArchiveView
-
+from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 
 from .models import Entry
@@ -47,7 +47,7 @@ class EntryCreate(CreateView):
 		return super(EntryCreate, self).form_valid(form)
 
 class TagList(ListView):
-	queryset = Entry.tags.all()
+	queryset = Entry.tags.most_common()
 	template_name = "words/tag_list.html"
 
 class TagArchive(ListView):

@@ -9,7 +9,7 @@
 <div class="container primary-content">
     <div class="col-md-12">
         {% for tag in object_list %}
-            {{ tag }}<br>
+            <a href="{% url 'tag-archive' tag_slug=tag.slug %}">{{ tag.name }}<span class="badge">{{ tag.num_times }}</span></a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </div>
 </div>
