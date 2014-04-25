@@ -4,6 +4,7 @@
     <div class="blog-post">
     <h2 class="blog-post-title"><a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
     <p class="blog-post-meta">Posted {{ entry.published_on|date:"l, F dS Y @ G:i" }}</p>
+    {{ entry.text|safe }}
     {% if entry.tags.slugs %}
     <p class="blog-post-meta">
         <a href="{% url 'tag-list' %}" class="tag-archive"><i class="fa fa-tags"></i></a>
@@ -12,7 +13,6 @@
         {% endfor %}
     </p>
     {% endif %}
-    {{ entry.text|safe }}
     </div><!-- /.blog-post -->
 {% endfor %}
 {% if is_paginated %}
