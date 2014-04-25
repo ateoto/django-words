@@ -11,26 +11,26 @@ from .forms import EntryForm
 
 class EntryList(ListView):
 	context_object_name = "entry_list"
-	queryset = Entry.objects.order_by("-published_on")
+	queryset = Entry.objects.filter(published=True).order_by("-published_on")
 	paginate_by = 5
 
 class EntryYearArchive(YearArchiveView):
 	context_object_name = "entry_list"
-	queryset = Entry.objects.order_by("-published_on")
+	queryset = Entry.objects.filter(published=True).order_by("-published_on")
 	date_field = "published_on"
 	make_object_list = True
 	template_name = "words/entry_list.html"
 
 class EntryMonthArchive(MonthArchiveView):
 	context_object_name = "entry_list"
-	queryset = Entry.objects.order_by("-published_on")
+	queryset = Entry.objects.filter(published=True).order_by("-published_on")
 	date_field = "published_on"
 	make_object_list = True
 	template_name = "words/entry_list.html"
 
 class EntryDayArchive(DayArchiveView):
 	context_object_name = "entry_list"
-	queryset = Entry.objects.order_by("-published_on")
+	queryset = Entry.objects.filter(published=True).order_by("-published_on")
 	date_field = "published_on"
 	make_object_list = True
 	template_name = "words/entry_list.html"
@@ -54,7 +54,7 @@ class TagArchive(ListView):
 	template_name = "words/tag_archive.html"
 
 	def get_queryset(self):
-		return Entry.objects.filter(
+		return Entry.objects.filter(published=True).filter(
 			tags__slug__in=[self.kwargs['tag_slug']]
 		).order_by('-published_on')
 

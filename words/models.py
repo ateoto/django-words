@@ -14,6 +14,7 @@ class Entry(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, editable=False)
     published_on = models.DateTimeField(auto_now_add=True)
     edited_on = models.DateTimeField(auto_now=True)
+    published = models.BooleanField(default=True)
     text = RichTextField()
     slug = models.SlugField(editable=False)
 
