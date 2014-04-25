@@ -1,45 +1,32 @@
-{% extends "words/base.html" %}
-{% load static from staticfiles %}
-{% block css %}
-	{{ block.super }}
-	<link href="{% static "words/css/main.css" %}" rel="stylesheet">
-{% endblock css %}
-{% block title %}Blog {% endblock title %} 
+{% extends "base.html" %}
 {% block content %}
-<div class="container primary-content">
-    <div class="col-md-12">
-        {% for entry in object_list %}
-        <article class="listed-article">
-            <header class="listed-article">
-                <a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a>
-            	<span class="small publine">Posted {{ entry.published_on|date:"l, F dS Y @ G:i" }}</span>
-            	{% if entry.tags.slugs %}
-            	<span class="small article-tags">
-                    <a href="{% url 'tag-list' %}" class="tag-archive"><i class="fa fa-tags"></i></a>
-            		{% for tag in entry.tags.slugs %}
-            			<a href="{% url 'tag-archive' tag_slug=tag %}" class="tag-archive">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
-            		{% endfor %}
-            	</span>
-            	{% endif %}
-            </header>
-            {{ entry.text|safe }}
-            <footer></footer>
-        </article>
+{% for entry in object_list %}
+    <div class="blog-post">
+    <h2 class="blog-post-title"><a class="article-title h2" href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h2>
+    <p class="blog-post-meta">Posted {{ entry.published_on|date:"l, F dS Y @ G:i" }}</p>
+    {% if entry.tags.slugs %}
+    <p class="blog-post-meta">
+        <a href="{% url 'tag-list' %}" class="tag-archive"><i class="fa fa-tags"></i></a>
+        {% for tag in entry.tags.slugs %}
+        <a href="{% url 'tag-archive' tag_slug=tag %}" class="tag-archive">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
-        {% if is_paginated %}
-		<ul class="pager">
-		  {% if page_obj.has_next %}
-		  <li class="previous">
-		  	<a href="{% url 'paginated-entry-list' page=page_obj.next_page_number %}"><i class="fa fa-arrow-left"></i>&nbsp; Older</a>
-		  </li>
-		  {% endif %}
-		  {% if page_obj.has_previous %}
-		  <li class="next">
-		  	<a href="{% url 'paginated-entry-list' page=page_obj.previous_page_number %}">Newer &nbsp;<i class="fa fa-arrow-right"></i></a>
-		  </li>
-		  {% endif %}
-		</ul>
-        {% endif %}
-    </div>
-</div>
+    </p>
+    {% endif %}
+    {{ entry.text|safe }}
+    </div><!-- /.blog-post -->
+{% endfor %}
+{% if is_paginated %}
+	<ul class="pager">
+	  {% if page_obj.has_next %}
+	  <li class="previous">
+	  	<a href="{% url 'paginated-entry-list' page=page_obj.next_page_number %}"><i class="fa fa-arrow-left"></i>&nbsp; Older</a>
+	  </li>
+	  {% endif %}
+	  {% if page_obj.has_previous %}
+	  <li class="next">
+	  	<a href="{% url 'paginated-entry-list' page=page_obj.previous_page_number %}">Newer &nbsp;<i class="fa fa-arrow-right"></i></a>
+	  </li>
+	  {% endif %}
+	</ul>
+{% endif %}
 {% endblock content %}
