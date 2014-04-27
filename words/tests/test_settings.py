@@ -28,12 +28,18 @@ EXTERNAL_APPS = [
     'crispy_forms',
     'ckeditor',
     'taggit',
+    'south',
 ]
 
 INTERNAL_APPS = [
     'words',
     'words.tests.test_app',
 ]
+
+SOUTH_MIGRATION_MODULES = {
+    'taggit': 'taggit.south_migrations',
+    'words': 'words.south_migrations',
+}
 
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 
