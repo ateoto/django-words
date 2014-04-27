@@ -1,4 +1,5 @@
 {% extends "words/base.html" %}
+{% load words_extras %}
 {% block content %}
 {% for entry in object_list %}
     <div class="blog-post">
@@ -30,3 +31,15 @@
 	</ul>
 {% endif %}
 {% endblock content %}
+
+{% block sidebarmodules %}
+<div class="sidebar-module">
+<h4>Archives</h4>
+{% get_entry_archive as my_archive %}
+<ol class="list-unstyled">
+{% for archive_month in my_archive %}
+    <li><a href="/blog/{{ archive_month|date:"Y" }}/{{ archive_month|date:"m" }}/">{{ archive_month|date:"F Y" }}</a>
+{% endfor %}
+</ol>
+</div>
+{% endblock sidebarmodules %}
