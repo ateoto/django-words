@@ -38,8 +38,10 @@ INTERNAL_APPS = [
 
 SOUTH_MIGRATION_MODULES = {
     'taggit': 'taggit.south_migrations',
-    'words': 'words.south_migrations',
+    'words': 'Im.putting.cats.here.so.we.can.skip.migrations',
 }
+
+#SOUTH_TESTS_MIGRATE = False
 
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 

@@ -10,8 +10,6 @@ install:
   - pip install -q $DJANGO --use-mirrors
   - pip install -q -r test_requirements.txt --use-mirrors
 script: 
-  - python manage.py syncdb --noinput
-  - python manage.py migrate --noinput
   - coverage run --source words runtests.py
   - coverage report
 after_success: coveralls
