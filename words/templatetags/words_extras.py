@@ -11,7 +11,6 @@ class EntryArchive(template.Node):
     def render(self, context):
         dates = Entry.objects.filter(published=True).datetimes('published_on', 'month', order='DESC')
         if dates:
-            print(dates, self.var_name)
             context[self.var_name] = dates
         return ''
 
@@ -19,7 +18,6 @@ class EntryArchive(template.Node):
 @register.tag
 def get_entry_archive(parser, token):
     try:
-        print(token)
         tag_name, arg = token.contents.split(None, 1)
     except ValueError:
         raise template.TemplateSyntaxError, "%s tag requires arguments" % token.contents.split()[0]
