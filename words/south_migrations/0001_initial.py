@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
+import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
@@ -15,6 +15,7 @@ class Migration(SchemaMigration):
             ('author', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('published_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('edited_on', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('published', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('text', self.gf('ckeditor.fields.RichTextField')()),
             ('slug', self.gf('django.db.models.fields.SlugField')(max_length=50)),
         ))
@@ -68,6 +69,7 @@ class Migration(SchemaMigration):
             'author': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
             'edited_on': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'published': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'published_on': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50'}),
             'text': ('ckeditor.fields.RichTextField', [], {}),
