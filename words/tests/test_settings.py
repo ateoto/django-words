@@ -28,6 +28,7 @@ EXTERNAL_APPS = [
     'crispy_forms',
     'ckeditor',
     'taggit',
+    'django_summernote',
 ]
 
 INTERNAL_APPS = [
@@ -41,6 +42,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+SUMMERNOTE_CONFIG = {
+    'iframe': False,
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

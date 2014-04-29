@@ -3,16 +3,20 @@
 {% load crispy_forms_tags %}
 {% block css %}
     {{ block.super }}
+    <link href="{% static "django_summernote/summernote.css" %}" rel="stylesheet">
     <link href="{% static "words/css/main.css" %}" rel="stylesheet">
 {% endblock css %}
 {% block title %}Add Entry{% endblock title %} 
 {% block content %}
-<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 <div class="container primary-content">
     <div class="col-md-12">
 		{% crispy form %}
     </div>
 </div>
 {% endblock content %}
-{% crispy form %}
-
+{% block js %}
+<script src="{% static "django_summernote/summernote.min.js" %}"></script>
+<script src="{% static "django_summernote/jquery.ui.widget.js" %}"></script>
+<script src="{% static "django_summernote/jquery.fileupload.js" %}"></script>
+<script src="{% static "django_summernote/jquery.iframe-transport.js" %}"></script>
+{% endblock js %}

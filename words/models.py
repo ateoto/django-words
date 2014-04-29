@@ -4,7 +4,6 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.urlresolvers import reverse
 
-from ckeditor.fields import RichTextField
 from taggit.managers import TaggableManager
 
 
@@ -15,7 +14,7 @@ class Entry(models.Model):
     published_on = models.DateTimeField(auto_now_add=True)
     edited_on = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=True)
-    text = RichTextField()
+    text = models.TextField()
     slug = models.SlugField(editable=False)
 
     tags = TaggableManager()

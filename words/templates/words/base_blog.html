@@ -1,0 +1,47 @@
+{% extends "words/base.html" %}
+{% load static from staticfiles %}
+{% load tz %}
+{% timezone "America/Chicago" %}
+{% block container %}
+<div class="blog-header">
+  <h1 class="blog-title">{% block title %}matt.mccants.io{% endblock title %}</h1>
+  <p class="lead blog-description">The ramblings and opinions of Matthew McCants</p>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-8 blog-main">
+  {% block content %}
+  {% endblock content %}
+  </div><!-- /.blog-main -->
+
+  <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+    <div class="sidebar-module sidebar-module-inset">
+      <h4>About</h4>
+      <p>An IT professional with way too many hobbies. Topics range from bicycles to homebrews with stops in security, baguettes, photography, and computer games.</p>
+    </div>
+    {% block sidebarmodules %}
+    <div class="sidebar-module">
+      <h4>Archives</h4>
+      <ol class="list-unstyled">
+        <li><a href="/blog/2014/04/">April 2014</a></li>
+      </ol>
+    </div>
+    {% endblock sidebarmodules %}
+    <div class="sidebar-module">
+      <h4>Links</h4>
+      <ol class="list-unstyled">
+        <li><a href="https://github.com/ateoto">GitHub</a></li>
+        <li><a href="https://twitter.com/ateoto">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/pub/matthew-mccants/50/b0b/868">Linkedin</a></li>
+      </ol>
+    </div>
+  </div><!-- /.blog-sidebar -->
+
+</div><!-- /.row -->
+{% endblock container %}
+{% block footer %}
+<div class="blog-footer">
+</div>
+{% endblock footer %}
+{% endtimezone %}
