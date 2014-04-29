@@ -1,4 +1,6 @@
 {% extends "words/base_blog.html" %}
+{% load tz %}
+{% timezone "America/Chicago" %}
 {% load words_extras %}
 {% block content %}
 {% for entry in object_list %}
@@ -43,3 +45,4 @@
 </ol>
 </div>
 {% endblock sidebarmodules %}
+{% endtimezone %}

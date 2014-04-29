@@ -1,4 +1,6 @@
 {% extends "words/base_blog.html" %}
+{% load tz %}
+{% timezone "America/Chicago" %}
 {% block title %}Entries tagged with {{ tag }}{% endblock title %} 
 {% block content %}
 {% for entry in object_list %}
@@ -31,3 +33,4 @@
     </ul>
 {% endif %}
 {% endblock content %}
+{% endtimezone %}

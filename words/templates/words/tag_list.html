@@ -1,4 +1,6 @@
 {% extends "words/base_blog.html" %}
+{% load tz %}
+{% timezone "America/Chicago" %}
 {% load static from staticfiles %}
 {% block css %}
 	{{ block.super }}
@@ -14,4 +16,4 @@
     </div>
 </div>
 {% endblock content %}
-
+{% endtimezone %}

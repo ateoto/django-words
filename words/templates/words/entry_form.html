@@ -1,4 +1,6 @@
 {% extends "words/base.html" %}
+{% load tz %}
+{% timezone "America/Chicago" %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 {% block css %}
@@ -20,3 +22,4 @@
 <script src="{% static "django_summernote/jquery.fileupload.js" %}"></script>
 <script src="{% static "django_summernote/jquery.iframe-transport.js" %}"></script>
 {% endblock js %}
+{% endtimezone %}

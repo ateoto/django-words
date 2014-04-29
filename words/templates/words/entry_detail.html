@@ -1,4 +1,6 @@
 {% extends "words/base.html" %}
+{% load tz %}
+{% timezone "America/Chicago" %}
 {% block title %}{{ entry.title }}{% endblock title %} 
 {% block content %}
 <div class="blog-post">
@@ -15,3 +17,4 @@
 {% endif %}
 </div><!-- /.blog-post -->
 {% endblock content %}
+{% endtimezone %}
