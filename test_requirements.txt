@@ -7,3 +7,4 @@ django-ckeditor-updated
 django-taggit
 pytz
 south
+django-summernote
