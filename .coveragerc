@@ -3,5 +3,6 @@ source = words
 omit = 
   */tests*
   */migrations*
+  */south_migrations*
   */admin*
   
