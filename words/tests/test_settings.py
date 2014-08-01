@@ -84,6 +84,7 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(APP_ROOT.parent, 'app_static')
 MEDIA_ROOT = os.path.join(APP_ROOT.parent, 'app_media')
+MEDIA_URL = '/media/'
 
 TEMPLATE_DIRS = (
     Path(APP_ROOT + 'templates'),
